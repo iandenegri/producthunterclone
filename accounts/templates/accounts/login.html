@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Log in to Product Hunt!</h2>
+<hr>
+
+{% if error %}
+<em><p style="color: red;">{{ error }}</p></em>
+{% endif %}
+
+<form class="signup-form" action="{% url 'login' %}" method="POST">
+  {% csrf_token %}
+  <small>Username:</small>
+  <br>
+  <input type="text" name="username" placeholder="Username">
+  <br>
+  <small>Password:</small>
+  <br>
+  <input type="password" name="password" placeholder="Password">
+  <br>
+  <br>
+  <input type="submit" class='btn btn-primary' name="login-button" value='Submit!'>
+</form>
+{% endblock %}
