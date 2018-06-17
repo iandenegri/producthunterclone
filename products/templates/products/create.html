@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Create your product listing!</h2>
+<hr>
+{% if error %}
+<em><p style="color: red;">{{ error }}</p></em>
+{% endif %}
+
+<form class="create-product" action="{% url 'create' %}" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <small>Product Title:</small>
+  <br>
+  <input type="text" name="title" placeholder="Name of your product">
+  <br>
+  <small>Product Website:</small>
+  <br>
+  <input type="url" name="website" placeholder="http://yourproduct.com">
+  <br>
+  <small>Tell users about your product:</small>
+  <br>
+  <input type="textbox" name="description" placeholder="Description">
+  <br>
+  <small>Product Image:</small>
+  <br>
+  <input type="file" name="image" value="">
+  <br>
+  <small>Product Icon:</small>
+  <br>
+  <input type="file" name="icon" value="">
+  <br>
+  <br>
+  <input type="submit" class='btn btn-primary' name="create-button" value='Submit!'>
+</form>
+
+{% endblock %}

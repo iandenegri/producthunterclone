@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-2">
+    <img src="{{ product.product_icon.url }}" class='img-fluid' alt="">
+  </div>
+  <div class="col-10">
+    <a href="{{ product.url }}">{{ product.title }}</a>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-8 product-image">
+    <img src=" {{ product.product_img.url }}" class='img-fluid' alt="{{product.summary}}">
+  </div>
+  <div class="col-4 voting">
+    <!-- This div section will contain the voting system. Similar to reddit. Maybe use a pair of functions that cna either add 1 or subtract 1 from the current vote total -->
+    <a href="upvote.com"> <button type="button" class= 'btn btn-primary btn-lg btn-block' name="button">Upvote</button> </a>
+    <br>
+    {{ product.votes_total}}
+    <!-- Code below is the basis for a downvoting system but it seems kind of mean to downvote someone's project and work... -->
+    <!-- <br>
+    <a href="downvote.com"><button type="button" class= 'btn btn-danger btn-lg btn-block' name="button">Downvote</button></a> -->
+  </div>
+
+
+</div>
+<br>
+<div class="row">
+  <div class="col-4">
+    <p>Hunted by - <strong>{{ product.hunter }}</strong> </p>
+  </div>
+  <div class="col-4 text-right">
+    <p> <strong>{{ product.pub_date }}</strong> </p>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-8">
+    <p class='product-body'> {{ product.body }} </p>
+  </div>
+</div>
+<!-- Code below will allow us to send a form to the object in the data base and give it an upvote -->
+<!-- Would creating an upvote and or downvote method in the object model be better?? -->
+<!-- How can we ensure that a user can only vote once? Is there a way to create a user history for their votes? -->
+<form class="" action="{% url 'upvote' product.id %}" method="POST">
+  {% csrf_token %}
+  <input type="hidden" name="" value="">
+</form>
+
+{% endblock %}

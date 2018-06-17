@@ -28,6 +28,13 @@
               </li>
               {% if user.is_authenticated %}
               <li class="nav-item">
+                <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">Create</a>
+                <form id='logout' action="{% url 'create' %}" method="GET">
+                  {% csrf_token %}
+                  <input type="hidden" name="" value="">
+                </form>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">Logout</a>
                 <form id='logout' action="{% url 'logout' %}" method="POST">
                   {% csrf_token %}
@@ -54,7 +61,11 @@
     </div>
 
     <footer>
-      <h3>Footer</h3>
+      <nav class='navbar navbar-nav navbar-expand-lg navbar-light bg-light '>
+        <div class="container">
+
+        </div>
+      </nav>
     </footer>
 
     <!-- Bootstrap core JavaScript
