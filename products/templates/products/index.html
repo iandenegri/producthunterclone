@@ -1,5 +1,28 @@
 {% extends 'base.html' %}
 
 {% block content %}
-Stuff for the index.
+
+{% for product in products.all %}
+<div class="row product-card ">
+  <div class="col-2 index-product-image">
+    <img src="{{ product.product_img.url }}" class='img-fluid' alt="{{product.summary}}">
+  </div>
+  <div class="col-7 index-product-details">
+    <h3> {{ product.title }}</h3>
+    <p>{{ product.summary }}</p>
+  </div>
+  <div class="col-3 index-voting">
+    <a href="javascript:{document.getElementById('upvote').submit()}"> <button type="button" class= 'btn btn-primary btn-lg btn-block' name="button">Upvote</button></a>
+    <br>
+    {{ product.votes_total }}
+    <form id='upvote' action="{% url 'upvote' product.id %}" method="POST">
+      {% csrf_token %}
+      <input type="hidden" name="" value="">
+    </form>
+  </div>
+</div>
+<br>
+<br>
+{% endfor %}
+
 {% endblock %}

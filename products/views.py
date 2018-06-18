@@ -6,7 +6,8 @@ from django.utils import timezone
 # Create your views here.
 
 def index(request):
-    return render(request, 'products/index.html')
+    products = Product.objects
+    return render(request, 'products/index.html', {'products':products})
 
 @login_required
 def create(request):
@@ -36,7 +37,7 @@ def detail(request, product_id):
 
 @login_required
 def upvote(request, product_id):
-    if request.method='POST':
+    if request.method=='POST':
         product = get_object_or_404(Product, pk=product_id)
         product.votes_total += 1
         product.save()
