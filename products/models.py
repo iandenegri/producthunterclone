@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 import datetime
+from django.contrib.auth.decorators import login_required
 
 # Create your models here.
 
@@ -26,3 +27,14 @@ class Product(models.Model):
 
     def pub_date_pretty(self):
         return self.pub_date.strftime('%b %e %Y')
+
+    @login_required
+    def upvote(self):
+        self.votes_total += 1
+        return self.votes_total
+
+    @login_required
+    def downvote(self):
+        self.votes_total -= 1
+        self.save()
+        return self.votes_total

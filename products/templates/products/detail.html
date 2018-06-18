@@ -17,9 +17,9 @@
   </div>
   <div class="col-4 voting">
     <!-- This div section will contain the voting system. Similar to reddit. Maybe use a pair of functions that cna either add 1 or subtract 1 from the current vote total -->
-    <a href="upvote.com"> <button type="button" class= 'btn btn-primary btn-lg btn-block' name="button">Upvote</button> </a>
+    <a href="javascript:{document.getElementById('upvote').submit() }"> <button type="button" class= 'btn btn-primary btn-lg btn-block' name="button">Upvote</button> </a>
     <br>
-    {{ product.votes_total}}
+    {{ product.votes_total }}
     <!-- Code below is the basis for a downvoting system but it seems kind of mean to downvote someone's project and work... -->
     <!-- <br>
     <a href="downvote.com"><button type="button" class= 'btn btn-danger btn-lg btn-block' name="button">Downvote</button></a> -->
@@ -45,7 +45,7 @@
 <!-- Code below will allow us to send a form to the object in the data base and give it an upvote -->
 <!-- Would creating an upvote and or downvote method in the object model be better?? -->
 <!-- How can we ensure that a user can only vote once? Is there a way to create a user history for their votes? -->
-<form class="" action="{% url 'upvote' product.id %}" method="POST">
+<form id='upvote' action="{% url 'upvote' product.id %}" method="POST">
   {% csrf_token %}
   <input type="hidden" name="" value="">
 </form>
